@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 //os recursos do miniframework
+
+use App\Models\Usuario;
 use MF\Controller\Action;
 use MF\Model\Container;
 
@@ -16,6 +18,22 @@ class IndexController extends Action {
 	public function inscreverse() {
 
 		$this->render('inscreverse');
+	}
+
+	public function registrar() {
+		//receber dados do formularios
+		//print_r($_POST);
+
+		$usuario = Container::getModel('Usuario');
+
+		$usuario->__set('nome', $_POST['nome']);
+		$usuario->__set('email', $_POST['email']);
+		$usuario->__set('senha', $_POST['senha']);
+
+		$usuario->salvar();
+		//suceso
+
+		//erro
 	}
 }
 
